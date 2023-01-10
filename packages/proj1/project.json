@@ -1,0 +1,92 @@
+{
+  "name": "proj1",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "packages/proj1/pymonorepo_proj1",
+  "targets": {
+    "deploy": {
+      "executor": "@nxlv/python:sls-deploy",
+      "dependsOn": ["build"],
+      "options": {}
+    },
+    "package": {
+      "executor": "@nxlv/python:sls-package",
+      "dependsOn": ["build"],
+      "options": {}
+    },
+    "docs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pydoc-markdown -p pymonorepo_proj1 --render-toc > docs/source/api.md",
+        "cwd": "packages/proj1"
+      }
+    },
+    "lock": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "packages/proj1"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["packages/proj1/dist"],
+      "options": {
+        "outputPath": "packages/proj1/dist",
+        "publish": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": ["reports/packages/proj1/pylint.txt"],
+      "options": {
+        "outputFile": "reports/packages/proj1/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "outputs": [
+        "reports/packages/proj1/unittests",
+        "coverage/packages/proj1"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "packages/proj1"
+      }
+    },
+    "tox": {
+      "executor": "@nxlv/python:tox",
+      "outputs": [
+        "reports/packages/proj1/unittests",
+        "coverage/packages/proj1"
+      ],
+      "options": {
+        "silent": false,
+        "args": ""
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "pymonorepo"
+version = "1.0.0"
+description = ""
+authors = [ ]
+license = "Proprietary"
+readme = "README.md"
+
+  [tool.poetry.dependencies]
+  python = ">=3.8,<3.10"
+
+    [tool.poetry.dependencies.pymonorepo-lib1]
+    path = "packages/lib1"
+    develop = true
+
+    [tool.poetry.dependencies.pymonorepo-proj1]
+    path = "packages/proj1"
+    develop = true
+
+[build-system]
+requires = [ "poetry-core==1.1.0" ]
+build-backend = "poetry.core.masonry.api"

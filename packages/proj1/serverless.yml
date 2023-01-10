@@ -1,0 +1,26 @@
+service: proj1
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    usePoetry: false
+
+package:
+  individually: false
+  patterns:
+    - '!**'
+    - 'pymonorepo_proj1/**'
+
+provider:
+  name: aws
+  runtime: python3.9
+
+functions:
+  hello:
+    handler: pymonorepo_proj1/hello.handler
+    events:
+      - http:
+          path: hello
+          method: get

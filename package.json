@@ -4,10 +4,14 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@nxlv/python": "15.0.0-beta.4"
+  },
   "devDependencies": {
     "nx": "15.4.5",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "serverless": "^3.26.0",
+    "serverless-python-requirements": "^6.0.0"
   },
   "workspaces": [
     "packages/*"

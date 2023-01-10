@@ -1,0 +1,76 @@
+{
+  "name": "lib1",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/lib1/pymonorepo_lib1",
+  "targets": {
+    "docs": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "pydoc-markdown -p pymonorepo_lib1 --render-toc > docs/source/api.md",
+        "cwd": "packages/lib1"
+      }
+    },
+    "lock": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "packages/lib1"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["packages/lib1/dist"],
+      "options": {
+        "outputPath": "packages/lib1/dist",
+        "publish": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": ["reports/packages/lib1/pylint.txt"],
+      "options": {
+        "outputFile": "reports/packages/lib1/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": ["reports/packages/lib1/unittests", "coverage/packages/lib1"],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "packages/lib1"
+      }
+    },
+    "tox": {
+      "executor": "@nxlv/python:tox",
+      "outputs": ["reports/packages/lib1/unittests", "coverage/packages/lib1"],
+      "options": {
+        "silent": false,
+        "args": ""
+      }
+    }
+  },
+  "tags": []
+}

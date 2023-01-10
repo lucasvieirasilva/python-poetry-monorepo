@@ -13,5 +13,9 @@
         ]
       }
     }
-  }
+  },
+  "plugins": [
+    "@nxlv/python"
+  ]
 }
+
